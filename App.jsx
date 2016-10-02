@@ -5,18 +5,31 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-       prop1: "Property 1",
-       prop2: "Property 2"
+       prop1: 1,
+       name: ""
     }
+
+    this.changeValue = this.changeValue.bind(this);
+    this.incrementValue = this.incrementValue.bind(this);
+  }
+
+  incrementValue(){
+    this.setState({prop1: this.state.prop1+1})
+  }
+
+  changeValue(e){
+    this.setState({name: e.target.value})
   }
 
   render() {
       return (
          <div>
             <Header/>
-            <h1>{this.state.prop1}</h1>
-            <h1>{this.state.prop2}</h1>
-            <h1>{this.state.prop3}</h1>
+            <button onClick={this.incrementValue}>Increment</button>
+            <div>{this.state.prop1}</div>
+            <br/>
+            <input type='text' value={this.state.name} onChange={this.changeValue}/>
+            <div>{this.state.name}</div>
             <Footer/>
          </div>
       );
@@ -24,33 +37,23 @@ class App extends React.Component {
 }
 
 class Header extends React.Component {
-   render() {
-     var h1Style = {
-        color: 'darkgreen'
-     }
-     return (
-         <div>
-            <h1 style={h1Style}>Header</h1>
-         </div>
-      );
-   }
+    render() {
+        return (
+           <div>
+              <h1>HEADER</h1>
+           </div>
+        );
+    }
 }
 
 class Footer extends React.Component {
-   render() {
-     var footerMargin = {
-        margin-top: 20px;
-     }
-      return (
-         <div>
-            <p style={footerMargin}>This is a footer. All rights reserved to Umbrella corporation.</p>
-         </div>
-      );
-   }
-}
-
-App.defaultProps = {
-   prop3: "Default Property 3",
+    render() {
+        return (
+           <div>
+              <h1>FOOTER</h1>
+           </div>
+        );
+    }
 }
 
 export default App;
